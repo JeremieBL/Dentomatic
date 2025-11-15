@@ -8,8 +8,8 @@ Gestion de cabinet, prise de rendez-vous intelligente, rappels patients, factura
 - (À remplir : dis-moi ce que fait ton programme C++ pour l’instant et je complète !)
 
 ## Fonctionnalités prévues
-- IA pour analyse de radiographies
-- Planning intelligent avec prédiction de désistements
+- IA pour gestion des radiographies
+- Planning intelligent
 - Chatbot patient
 - Intégration RAMQ / assurances
 - Interface graphique moderne
