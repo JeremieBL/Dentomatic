@@ -39,3 +39,8 @@
 
 # debug information files
 *.dwo
+
+# Dentomatic specific files
+dentomatic
+patients.dat
+appointments.dat
