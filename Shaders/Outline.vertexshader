@@ -1,0 +1,14 @@
+#version 330 core
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec3 aNormal;
+
+uniform mat4 M;
+uniform mat4 V;
+uniform mat4 P;
+uniform float outlineThickness; // Control the thickness of the outline (e.g., 0.05)
+
+void main() {
+    // Extrude the vertex position along the normal for the outline effect
+    vec3 extrudedPos = aPos + normalize(aNormal) * outlineThickness;
+    gl_Position = P * V * M * vec4(extrudedPos, 1.0);
+}

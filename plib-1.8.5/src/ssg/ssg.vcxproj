@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Template|Win32">
+      <Configuration>Template</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <SccProjectName />
+    <SccLocalPath />
+    <ProjectGuid>{9F56FF60-1F1C-49F4-B967-45BE190964FC}</ProjectGuid>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Template|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+    <UseOfMfc>false</UseOfMfc>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Template|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <ImportGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="$(VCTargetsPath)Microsoft.Cpp.UpgradeFromVC60.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>.\Release\</OutDir>
+    <IntDir>.\Release\</IntDir>
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>.\Debug\</OutDir>
+    <IntDir>.\Debug\</IntDir>
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <StringPooling>true</StringPooling>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <Optimization>MaxSpeed</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>..\sg;..\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>NDEBUG;WIN32;_LIB;PROXY_TEXTURES_ARE_NOT_BROKEN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Release\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Release\ssg.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Release\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Release\</ProgramDataBaseFileName>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>copy release\*.lib ..\..\*.*
+copy ssg.h ..\..\ssg.h
+copy ssgconf.h ..\..\ssgconf.h
+copy ssgMSFSPalette.h ..\..\ssgMSFSPalette.h
+copy ssgKeyFlier.h ..\..\ssgKeyFlier.h</Command>
+      <Message>Copy Library to plib directory</Message>
+    </PostBuildEvent>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>NDEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\ssg.bsc</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Release\ssg.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <InlineFunctionExpansion>Default</InlineFunctionExpansion>
+      <FunctionLevelLinking>false</FunctionLevelLinking>
+      <Optimization>Disabled</Optimization>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <WarningLevel>Level3</WarningLevel>
+      <AdditionalIncludeDirectories>..\sg;..\util;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>_DEBUG;WIN32;_LIB;PROXY_TEXTURES_ARE_NOT_BROKEN;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AssemblerListingLocation>.\Debug\</AssemblerListingLocation>
+      <PrecompiledHeaderOutputFile>.\Debug\ssg.pch</PrecompiledHeaderOutputFile>
+      <ObjectFileName>.\Debug\</ObjectFileName>
+      <ProgramDataBaseFileName>.\Debug\</ProgramDataBaseFileName>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+    </ClCompile>
+    <PostBuildEvent>
+      <Command>copy debug\*.lib ..\..\*.*
+copy ssg.h ..\..\ssg.h
+copy ssgconf.h ..\..\ssgconf.h
+copy ssgMSFSPalette.h ..\..\ssgMSFSPalette.h
+copy ssgKeyFlier.h ..\..\ssgKeyFlier.h</Command>
+      <Message>Copy Library to plib directory</Message>
+    </PostBuildEvent>
+    <ResourceCompile>
+      <Culture>0x0409</Culture>
+      <PreprocessorDefinitions>_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ResourceCompile>
+    <Bscmake>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>.\Debug\ssg.bsc</OutputFile>
+    </Bscmake>
+    <Lib>
+      <SuppressStartupBanner>true</SuppressStartupBanner>
+      <OutputFile>Debug\ssg_d.lib</OutputFile>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="ssg.cxx" />
+    <ClCompile Include="ssgAnimation.cxx" />
+    <ClCompile Include="ssgAnimTransform.cxx" />
+    <ClCompile Include="ssgAxisTransform.cxx" />
+    <ClCompile Include="ssgBase.cxx" />
+    <ClCompile Include="ssgBaseTransform.cxx" />
+    <ClCompile Include="ssgBranch.cxx" />
+    <ClCompile Include="ssgContext.cxx" />
+    <ClCompile Include="ssgCutout.cxx" />
+    <ClCompile Include="ssgDList.cxx" />
+    <ClCompile Include="ssgEntity.cxx" />
+    <ClCompile Include="ssgInvisible.cxx" />
+    <ClCompile Include="ssgIO.cxx" />
+    <ClCompile Include="ssgIsect.cxx" />
+    <ClCompile Include="ssgLeaf.cxx" />
+    <ClCompile Include="ssgList.cxx" />
+    <ClCompile Include="ssgLoad.cxx" />
+    <ClCompile Include="ssgLoad3ds.cxx" />
+    <ClCompile Include="ssgLoadAC.cxx" />
+    <ClCompile Include="ssgLoadASC.cxx" />
+    <ClCompile Include="ssgLoadASE.cxx" />
+    <ClCompile Include="ssgLoadATG.cxx" />
+    <ClCompile Include="ssgLoadBMP.cxx" />
+    <ClCompile Include="ssgLoadDOF.cxx" />
+    <ClCompile Include="ssgLoadDXF.cxx" />
+    <ClCompile Include="ssgLoaderWriterStuff.cxx" />
+    <ClCompile Include="ssgLoadFLT.cxx" />
+    <ClCompile Include="ssgLoadIV.cxx" />
+    <ClCompile Include="ssgLoadM.cxx" />
+    <ClCompile Include="ssgLoadMD2.cxx" />
+    <ClCompile Include="ssgLoadMDL.cxx" />
+    <ClCompile Include="ssgLoadMDL_BGLTexture.cxx" />
+    <ClCompile Include="ssgLoadOBJ.cxx" />
+    <ClCompile Include="ssgLoadOFF.cxx" />
+    <ClCompile Include="ssgLoadPCX.cxx" />
+    <ClCompile Include="ssgLoadPNG.cxx" />
+    <ClCompile Include="ssgLoadSGI.cxx" />
+    <ClCompile Include="ssgLoadSSG.cxx" />
+    <ClCompile Include="ssgLoadStrip.cxx" />
+    <ClCompile Include="ssgLoadTexture.cxx" />
+    <ClCompile Include="ssgLoadTGA.cxx" />
+    <ClCompile Include="ssgLoadTRI.cxx" />
+    <ClCompile Include="ssgLoadVRML1.cxx" />
+    <ClCompile Include="ssgLoadX.cxx" />
+    <ClCompile Include="ssgLoadXPlaneObj.cxx" />
+    <ClCompile Include="ssgOptimiser.cxx" />
+    <ClCompile Include="ssgParser.cxx" />
+    <ClCompile Include="ssgRangeSelector.cxx" />
+    <ClCompile Include="ssgRoot.cxx" />
+    <ClCompile Include="ssgSave3ds.cxx" />
+    <ClCompile Include="ssgSaveAC.cxx" />
+    <ClCompile Include="ssgSaveASC.cxx" />
+    <ClCompile Include="ssgSaveASE.cxx" />
+    <ClCompile Include="ssgSaveATG.cxx" />
+    <ClCompile Include="ssgSaveDXF.cxx" />
+    <ClCompile Include="ssgSaveFLT.cxx" />
+    <ClCompile Include="ssgSaveIV.cxx" />
+    <ClCompile Include="ssgSaveM.cxx" />
+    <ClCompile Include="ssgSaveOBJ.cxx" />
+    <ClCompile Include="ssgSaveOFF.cxx" />
+    <ClCompile Include="ssgSaveQHI.cxx" />
+    <ClCompile Include="ssgSaveTRI.cxx" />
+    <ClCompile Include="ssgSaveVRML1.cxx" />
+    <ClCompile Include="ssgSaveX.cxx" />
+    <ClCompile Include="ssgSelector.cxx" />
+    <ClCompile Include="ssgSimpleList.cxx" />
+    <ClCompile Include="ssgSimpleState.cxx" />
+    <ClCompile Include="ssgState.cxx" />
+    <ClCompile Include="ssgStateSelector.cxx" />
+    <ClCompile Include="ssgStateTables.cxx" />
+    <ClCompile Include="ssgStatistics.cxx" />
+    <ClCompile Include="ssgStats.cxx" />
+    <ClCompile Include="ssgTexTrans.cxx" />
+    <ClCompile Include="ssgTexture.cxx" />
+    <ClCompile Include="ssgTransform.cxx" />
+    <ClCompile Include="ssgTween.cxx" />
+    <ClCompile Include="ssgTweenController.cxx" />
+    <ClCompile Include="ssgVertSplitter.cxx" />
+    <ClCompile Include="ssgVTable.cxx" />
+    <ClCompile Include="ssgVtxArray.cxx" />
+    <ClCompile Include="ssgVtxTable.cxx" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="ssg.h" />
+    <ClInclude Include="ssg3ds.h" />
+    <ClInclude Include="ssgconf.h" />
+    <ClInclude Include="ssgKeyFlier.h" />
+    <ClInclude Include="ssgLoaderWriterStuff.h" />
+    <ClInclude Include="ssgLoadMDL.h" />
+    <ClInclude Include="ssgLoadVRML.h" />
+    <ClInclude Include="ssgLocal.h" />
+    <ClInclude Include="ssgMSFSPalette.h" />
+    <ClInclude Include="ssgParser.h" />
+    <ClInclude Include="ssgVertSplitter.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

@@ -1,0 +1,40 @@
+#version 330 core
+out vec4 FragColor;
+
+in vec3 v_worldPos;
+in vec3 v_normal;
+in vec3 v_viewPos;
+
+uniform vec3 lightPos;
+uniform vec3 lightColor;
+uniform float lightIntensity;
+uniform vec3 objectColor;
+uniform vec3 subsurfaceColor;
+uniform float density;  // Extinction coefficient for SSS (e.g., 0.5; tweak based on scale).
+
+uniform sampler2D backDepthTex;
+uniform vec2 screenSize;
+
+void main() {
+    vec3 toLightVector = lightPos - v_worldPos;
+    float lightDistanceSQ = dot(toLightVector, toLightVector);
+    vec3 lightDir = normalize(toLightVector);
+
+    float ndotl = max(0.0, dot(v_normal, lightDir));  // Standard diffuse.
+
+    // Compute thickness using back depth texture.
+    vec2 uv = gl_FragCoord.xy / screenSize;
+    float backD = texture(backDepthTex, uv).r;
+    float currentD = -v_viewPos.z;
+    float thickness = (backD > 0.0) ? (backD - currentD) : 10000.0;
+
+    // Transmittance for subsurface scattering.
+    float transmittance = exp(-thickness * density);
+    float inversendotl = max(0.0, dot(v_normal, -lightDir));  // Backscattering term.
+
+    vec3 diffuse = objectColor * lightColor * ndotl / lightDistanceSQ * lightIntensity;
+    vec3 subsurface = subsurfaceColor * lightColor * transmittance * inversendotl / lightDistanceSQ * lightIntensity;
+
+    vec3 finalColor = diffuse + subsurface;
+    FragColor = vec4(finalColor, 1.0);
+}

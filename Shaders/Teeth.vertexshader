@@ -1,0 +1,23 @@
+#version 330 core
+
+// Entrées du vertex shader
+layout(location = 0) in vec3 vertexPosition;
+layout(location = 1) in vec3 vertexNormal;
+
+out vec3 fragNormal;
+out vec3 fragPosition;
+
+// Uniformes
+uniform mat4 M;
+uniform mat4 V;
+uniform mat4 P;
+uniform vec3 lightDirection; // Direction de la lumière directionnelle
+uniform vec3 lightColor;    // Couleur de la lumière
+uniform vec3 toothColor;    // Couleur de base de la dent (généralement blanc cassé)
+
+// Vertex Shader
+void main() {
+    fragPosition = vec3(M * vec4(vertexPosition, 1.0));
+    fragNormal = mat3(transpose(inverse(M))) * vertexNormal; // Normales transformées
+    gl_Position = P * V * M * vec4(vertexPosition, 1.0);
+}

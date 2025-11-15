@@ -1,0 +1,32 @@
+# Visual Studio – jamais committer
+.vs
+.suo
+.user
+.vcxproj.user
+.pdb
+.ilk
+.obj
+.exe
+.log
+Browse.VC.db
+ipch
+
+# Builds
+build
+Debug
+Release
+x64
+x86
+
+# vcpkg et libs vendored (on les virera proprement plus tard)
+vcpkg
+ImGui
+Miniz
+ZipLib
+glfw
+stb
+glm
+
+# Gros fichiers temporaires
+.tmp
+.bak

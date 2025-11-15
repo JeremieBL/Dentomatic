@@ -1,0 +1,27 @@
+#version 330 core
+
+in vec3 FragNormal;
+
+uniform vec3 lightDirection; // Normalized direction to the light (e.g., vec3(-0.5, -1.0, -0.5))
+uniform vec3 lightColor;     // Light color (e.g., vec3(1.0, 1.0, 1.0) for white)
+uniform vec3 objectColor;    // Base color of the triangle (e.g., vec3(1.0, 0.5, 0.3))
+
+out vec4 FragColor;
+
+void main() {
+    // Normalize the incoming normal just in case
+    vec3 norm = normalize(FragNormal);
+    vec3 lightDir = normalize(-lightDirection); // Assuming directional light points towards the scene
+
+    // Diffuse factor: max(dot(normal, lightDir), 0.0)
+    float diff = max(dot(norm, lightDir), 0.0);
+
+    // Final color: diffuse * lightColor * objectColor
+    vec3 diffuse = diff * lightColor * objectColor;
+
+    // Add some ambient for visibility (optional, adjust strength)
+    float ambientStrength = 0.1;
+    vec3 ambient = ambientStrength * lightColor * objectColor;
+
+    FragColor = vec4(ambient + diffuse, 1.0);
+}

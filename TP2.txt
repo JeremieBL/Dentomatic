@@ -1,0 +1,31 @@
+Jérémie Béliveau-Lefebvre - 04494470
+
+IMN 731 - TP2 -  Visualisation de données scalaires
+
+
+Instructions : 
+Le projet à ouvrir est bien le "Labo1.vcxproj".
+Tous les .dll, .lib, .h et .cpp nécessaires ont étés mis dans la remise. Le projet contient tout pour le fonctionnement du projet visual studio 2019.
+
+
+Menu d'interraction:
+± : fait varier le pas d'échantillonage, est initialisé à 100.
+c : alterne entre les modes de placage de couleurs
+o : alterne entre la vue en projection et la vue orthogonale
+
+Haut/Bas/Droite/Gauche et A/S/D/W : permettent le déplacement dans la vue sélectionnée
+Sourie : permet la rotation dans la vue de projection et le déplacement dans la vue orthogonale
+Roulette de la sourie : permet de zoomer selon la vue sélectionnée
+
+Les isocontours:
+1 et 3 : descend et monte le sélecteur et permet de monter et descendre les isocontours sélectionnés
+Q : ajout un isocontour à l'endroit sélectionné
+E : pointe les isocontours créés en alternance
+R : sélectionne l'isocontour pointé ou le désélection pour accomplir une autre action
+X : efface l'isocontour sélectionné. À noter que le précédent sur la liste est aussitôt sélectionné pour être éditer.
+
+
+Bibliographie
+
+Le programme de base utilisé ici a été pris des tutorial de openGL : https://github.com/opengl-tutorials/ogl
+Plusieurs fonctions et fichiers .h et .cpp sont issues du cours IMN428

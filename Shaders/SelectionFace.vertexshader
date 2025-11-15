@@ -1,0 +1,17 @@
+#version 330 core
+layout(location = 0) in vec3 aPos;
+layout(location = 15) in vec3 vertCol;
+layout(location = 14) in vec3 faceCol;
+
+
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 projection; 
+
+ out vec3 facesCol;
+
+ void main() {
+     facesCol = faceCol;
+
+            gl_Position = projection * view * model * vec4(aPos, 1.0);
+        }

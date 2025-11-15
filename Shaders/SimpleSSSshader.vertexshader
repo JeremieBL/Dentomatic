@@ -1,0 +1,16 @@
+#version 330 core
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec3 aNormal;
+
+out vec3 v_fragmentPos;
+out vec3 v_normal;
+
+uniform mat4 M;
+uniform mat4 V;
+uniform mat4 P;
+
+void main() {
+    v_fragmentPos = vec3(M * vec4(aPos, 1.0));
+    v_normal = mat3(transpose(inverse(M))) * aNormal;  // Normal matrix for correct lighting.
+    gl_Position = P * V * M * vec4(aPos, 1.0);
+}

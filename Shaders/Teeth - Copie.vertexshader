@@ -1,0 +1,16 @@
+#version 330 core
+
+layout (location = 0) in vec3 aPos;
+layout (location = 1) in vec3 aNormal; // Normal attribute from your VBO
+
+uniform mat4 model;
+uniform mat4 view;
+uniform mat4 projection;
+uniform mat3 normalMatrix; // Inverse transpose of model for normals
+
+out vec3 FragNormal; // Pass normal to fragment shader
+
+void main() {
+    gl_Position = projection * view * model * vec4(aPos, 1.0);
+    FragNormal = normalize(normalMatrix * aNormal); // Transform normal
+}

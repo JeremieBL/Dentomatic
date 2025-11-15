@@ -1,0 +1,9 @@
+#version 330 core
+out vec3 fragcolor;
+uniform vec3 pickingColor;
+
+ in vec3 facesCol;
+
+void main() {
+    fragcolor = vec3(facesCol.x/255.0, facesCol.y/255.0, facesCol.z/255.0);
+}

@@ -1,0 +1,26 @@
+#version 330 core
+out vec4 FragColor;
+
+in vec3 v_fragmentPos;
+in vec3 v_normal;
+
+uniform vec3 lightPos;          // Position of the light source.
+uniform vec3 lightColor;        // Color/intensity of the light (e.g., vec3(1.0, 1.0, 1.0)).
+uniform vec3 subsurfaceColor;   // SSS color (e.g., vec3(0.8, 0.2, 0.2) for reddish skin-like scattering).
+uniform float lightIntensity;   // Overall light intensity scalar.
+uniform vec3 objectColor;       // Base color of the model (diffuse albedo).
+
+void main() {
+    vec3 toLightVector = lightPos - v_fragmentPos;
+    float lightDistanceSQ = dot(toLightVector, toLightVector);
+    vec3 lightDir = normalize(toLightVector);
+
+    float ndotl = max(0.0, dot(v_normal, lightDir));  // Standard diffuse.
+    float inversendotl = step(0.0, dot(v_normal, -lightDir));  // Backscattering term.
+
+    vec3 diffuse = lightColor * ndotl / lightDistanceSQ * lightIntensity;
+    vec3 subsurface = subsurfaceColor * inversendotl / lightDistanceSQ * lightIntensity;
+
+    vec3 finalColor = objectColor * (diffuse + subsurface);
+    FragColor = vec4(finalColor, 1.0);
+}
